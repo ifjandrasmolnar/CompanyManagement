@@ -1,19 +1,11 @@
-import Home  from "./components/Home";
-import Counter from "./components/Counter";
-import FetchData from "./components/FetchData";
+import Login  from "./Management/Login";
+
+
 
 const AppRoutes = [
     {
         path: '/',
-        element: <Home />
-    },
-    {
-        path: '/counter',
-        element: <Counter />
-    },
-    {
-        path: '/fetch-data',
-        element: <FetchData />
+        element: <Login />
     }
 ];
 export default AppRoutes;
