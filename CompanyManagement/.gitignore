@@ -1,0 +1,9 @@
+﻿/.idea
+/CompanyManagement/Properties
+/CompanyManagement/appsettings.Development.json
+/CompanyManagement/appsettings.json
+
+CompanyManagement/ClientApp/node_modules/
+
+/CompanyManagementTest/bin/
+/CompanyManagementTest/obj/
