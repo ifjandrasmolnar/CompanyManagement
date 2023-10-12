@@ -11,16 +11,142 @@
     top: 0;
     left: 0;
     min-height: 100%;
-    min-width: 150px;
-    background-color: white;
+    min-width: 200px;
+    background-color: #afacac;
+    border-right: 1px solid #00000088;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
 }
 
 .management-navbar{
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: 70px;
-    min-width: 100%;
-    background-color: antiquewhite;
+    width: calc(100% - 200px);
+    background-color: #ccc8c8;
+    border-bottom: 1px solid #00000088;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-items1 {
+    width: 70%;
+}
+
+.navbar-items2 {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.navbar-avatar-box {
+    width: 65px;
+    height: 65px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    transition: 0.3s;
+}
+
+.navbar-avatar-box:hover {
+    background-color: #00000044;
+}
+
+.logout-btn {
+    position: relative;
+    top: 20px;
+    height: 30px;
+    outline: none;
+    border-width: 0;
+    background: #2e44de;
+    color: #fff;
+}
+
+.navbar-username {
+    position: relative;
+    top: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sidebar-devforce {
+    position: relative;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.sidebar-devforce span:nth-child(1) {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sidebar-devforce span:nth-child(3) {
+    font-size: 18px;
+    text-transform: inherit;
+}
+
+.navbar-language-box {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.navbar-language-box > span {
+    font-weight: 600;
+}
+
+.language-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.language-container > img {
+    transition: 0.3s;
+}
+
+.language-container > img:hover {
+    transform: scale(1.2);
+}
+
+.navbar-username-container {
+    position: relative;
+    top: -10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-menu-container {
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-menu-item {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #809b9f;
+    cursor: alias;
+}
+
+.sidebar-menu-item > span {
+    position: relative;
+    top: 20%;
 }
