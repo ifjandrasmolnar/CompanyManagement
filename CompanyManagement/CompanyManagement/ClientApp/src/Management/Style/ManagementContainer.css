@@ -1,0 +1,17 @@
+.app-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: #333333;
+}
+
+.workspace-container{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 150px);
+    height: calc(100vh - 70px);
+    background-color: #60b8d4;
+}
