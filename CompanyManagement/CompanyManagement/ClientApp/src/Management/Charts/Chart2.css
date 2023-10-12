@@ -1,0 +1,16 @@
+.chart2div{
+    position: absolute;
+    width: 60%;
+    height: 500px;
+    border-radius: 10px;
+    top: 600px;
+    left: 37%;
+    transform: translateX(-63%) scale(0.9);
+}
+
+.chart2-label{
+    position: relative;
+    font-size: 35px;
+    font-weight: bold;
+    left: 27%;
+}
