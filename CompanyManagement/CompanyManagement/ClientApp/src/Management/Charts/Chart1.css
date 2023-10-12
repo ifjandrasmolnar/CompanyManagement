@@ -85,3 +85,10 @@
         stroke-dashoffset: 0%;
     }
 }
+.chart1-label{
+    position: relative;
+    font-size: 35px;
+    font-weight: bold;
+    left: 27%;
+    top: 12px;
+}
