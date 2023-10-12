@@ -14,8 +14,8 @@ export default function Chart1() {
         // Add data
         const chartValues = [
             {
-                "date": "2012-01-01",
-                "distance": 227,
+                "date": "2023-09-27",
+                "income": 227,
                 "townName": "New York",
                 "townName2": "New York",
                 "townSize": 25,
@@ -23,32 +23,32 @@ export default function Chart1() {
                 "duration": 408
             },
             {
-                "date": "2012-01-02",
-                "distance": 371,
+                "date": "2023-09-28",
+                "income": 371,
                 "townName": "Washington",
                 "townSize": 14,
                 "latitude": 38.89,
                 "duration": 482
             },
             {
-                "date": "2012-01-03",
-                "distance": 433,
+                "date": "2023-09-29",
+                "income": 433,
                 "townName": "Wilmington",
                 "townSize": 6,
                 "latitude": 34.22,
                 "duration": 562
             },
             {
-                "date": "2012-01-04",
-                "distance": 345,
+                "date": "2023-09-30",
+                "income": 345,
                 "townName": "Jacksonville",
                 "townSize": 7,
                 "latitude": 30.35,
                 "duration": 379
             },
             {
-                "date": "2012-01-05",
-                "distance": 480,
+                "date": "2023-10-01",
+                "income": 480,
                 "townName": "Miami",
                 "townName2": "Miami",
                 "townSize": 10,
@@ -56,24 +56,24 @@ export default function Chart1() {
                 "duration": 501
             },
             {
-                "date": "2012-01-06",
-                "distance": 386,
+                "date": "2023-10-02",
+                "income": 386,
                 "townName": "Tallahassee",
                 "townSize": 7,
                 "latitude": 30.46,
                 "duration": 443
             },
             {
-                "date": "2012-01-07",
-                "distance": 348,
+                "date": "2023-10-03",
+                "income": 348,
                 "townName": "New Orleans",
                 "townSize": 10,
                 "latitude": 29.94,
                 "duration": 405
             },
             {
-                "date": "2012-01-08",
-                "distance": 238,
+                "date": "2023-10-04",
+                "income": 238,
                 "townName": "Houston",
                 "townName2": "Houston",
                 "townSize": 16,
@@ -81,32 +81,32 @@ export default function Chart1() {
                 "duration": 309
             },
             {
-                "date": "2012-01-09",
-                "distance": 218,
+                "date": "2023-10-05",
+                "income": 218,
                 "townName": "Dalas",
                 "townSize": 17,
                 "latitude": 32.8,
                 "duration": 287
             },
             {
-                "date": "2012-01-10",
-                "distance": 349,
+                "date": "2023-10-06",
+                "income": 349,
                 "townName": "Oklahoma City",
                 "townSize": 11,
                 "latitude": 35.49,
                 "duration": 485
             },
             {
-                "date": "2012-01-11",
-                "distance": 603,
+                "date": "2023-10-07",
+                "income": 603,
                 "townName": "Kansas City",
                 "townSize": 10,
                 "latitude": 39.1,
                 "duration": 890
             },
             {
-                "date": "2012-01-12",
-                "distance": 534,
+                "date": "2023-10-08",
+                "income": 534,
                 "townName": "Denver",
                 "townName2": "Denver",
                 "townSize": 18,
@@ -114,16 +114,16 @@ export default function Chart1() {
                 "duration": 810
             },
             {
-                "date": "2012-01-13",
+                "date": "2023-10-09",
                 "townName": "Salt Lake City",
                 "townSize": 12,
-                "distance": 425,
+                "income": 425,
                 "duration": 670,
                 "latitude": 40.75,
                 "alpha":0.4
             },
             {
-                "date": "2012-01-14",
+                "date": "2023-10-10",
                 "latitude": 36.1,
                 "duration": 470,
                 "townName": "Las Vegas",
@@ -131,10 +131,10 @@ export default function Chart1() {
                 "bulletClass": "lastBullet"
             },
             {
-                "date": "2012-01-15"
+                "date": "2023-10-11"
             },
             {
-                "date": "2012-01-16"
+                "date": "2023-10-12"
             }
         ];
 
@@ -175,7 +175,7 @@ export default function Chart1() {
 
             valueAxes: [{
                 id: "a1",
-                title: "distance",
+                title: "income",
                 gridAlpha: 0,
                 axisAlpha: 0
             },{
@@ -186,7 +186,7 @@ export default function Chart1() {
                 labelsEnabled: false
             },{
                 id: "a3",
-                title: "duration",
+                title: "working hours",
                 position: "right",
                 gridAlpha: 0,
                 axisAlpha: 0,
@@ -201,14 +201,14 @@ export default function Chart1() {
             }],
             graphs: [{
                 id: "g1",
-                valueField:  "distance",
-                title:  "distance",
+                valueField:  "income",
+                title:  "income",
                 type:  "column",
                 fillAlphas:  0.9,
                 valueAxis:  "a1",
-                balloonText:  "[[value]] miles",
-                legendValueText:  "[[value]] mi",
-                legendPeriodValueText:  "total: [[value.sum]] mi",
+                balloonText:  "[[value]] $",
+                legendValueText:  "[[value]] $",
+                legendPeriodValueText:  "total: [[value.sum]] $",
                 lineColor:  "#263138",
                 alphaField:  "alpha",
             },{
@@ -235,7 +235,7 @@ export default function Chart1() {
                 animationPlayed: true,
             },{
                 id: "g3",
-                title: "duration",
+                title: "working hours",
                 valueField: "duration",
                 type: "line",
                 valueAxis: "a3",
@@ -288,6 +288,9 @@ export default function Chart1() {
     }, []);
     
     return (
-        <div id="chartdiv" style={{ position: 'absolute', width: '85%', height: '500px', borderRadius: '10px', top: '30px', left: '50%', transform: 'translateX(-50%)' }}></div> 
+        <>
+            <span className="chart1-label">Financial income and working hours statement</span>
+            <div id="chartdiv" style={{ position: 'absolute', width: '85%', height: '500px', borderRadius: '10px', top: '80px', left: '50%', transform: 'translateX(-50%)' }}></div>
+        </> 
     );
 }
