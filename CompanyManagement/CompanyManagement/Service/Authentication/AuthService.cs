@@ -13,23 +13,23 @@ public class AuthService : IAuthService
         _tokenService = tokenService;
     }
 
-    public async Task<AuthResult> RegisterAsync(string email, string username, string password, string role)
+    public async Task<AuthResult> RegisterAsync(string username, string password, string role)
     {
-        var user = new IdentityUser { UserName = username, Email = email };
+        var user = new IdentityUser { UserName = username};
         var result = await _userManager.CreateAsync(user, password);
 
         if (!result.Succeeded)
         {
-            return FailedRegistration(result, email, username);
+            return FailedRegistration(result, username);
         }
 
         await _userManager.AddToRoleAsync(user, role); // Adding the user to a role
-        return new AuthResult(true, email, username, "");
+        return new AuthResult(true,username, "");
     }
 
-    private static AuthResult FailedRegistration(IdentityResult result, string email, string username)
+    private static AuthResult FailedRegistration(IdentityResult result, string username)
     {
-        var authResult = new AuthResult(false, email, username, "");
+        var authResult = new AuthResult(false,username, "");
 
         foreach (var error in result.Errors)
         {
@@ -39,37 +39,37 @@ public class AuthService : IAuthService
         return authResult;
     }
     
-    public async Task<AuthResult> LoginAsync(string email, string password)
+    public async Task<AuthResult> LoginAsync(string username, string password)
     {
-        var managedUser = await _userManager.FindByEmailAsync(email);
+        var managedUser = await _userManager.FindByNameAsync(username);
         var userRole = await _userManager.GetRolesAsync(managedUser);
 
         if (managedUser == null)
         {
-            return InvalidEmail(email);
+            return InvalidUsername(username);
         }
 
         var isPasswordValid = await _userManager.CheckPasswordAsync(managedUser, password);
         if (!isPasswordValid)
         {
-            return InvalidPassword(email, managedUser.UserName);
+            return InvalidPassword(managedUser.UserName);
         }
 
         var accessToken = _tokenService.CreateToken(managedUser, userRole[0]);
 
-        return new AuthResult(true, managedUser.Email, managedUser.UserName, accessToken);
+        return new AuthResult(true, managedUser.UserName, accessToken);
     }
 
-    private static AuthResult InvalidEmail(string email)
+    private static AuthResult InvalidUsername(string username)
     {
-        var result = new AuthResult(false, email, "", "");
-        result.ErrorMessages.Add("Bad credentials", "Invalid email");
+        var result = new AuthResult(false, username, "");
+        result.ErrorMessages.Add("Bad credentials", "Invalid username");
         return result;
     }
 
-    private static AuthResult InvalidPassword(string email, string userName)
+    private static AuthResult InvalidPassword(string userName)
     {
-        var result = new AuthResult(false, email, userName, "");
+        var result = new AuthResult(false, userName, "");
         result.ErrorMessages.Add("Bad credentials", "Invalid password");
         return result;
     }
