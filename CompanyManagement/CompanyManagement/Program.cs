@@ -12,6 +12,7 @@ AddServices();
 AddDbContext();
 AddAuthentication();
 AddIdentity();
+AddCors();
 
 var app = builder.Build();
 
@@ -31,6 +32,8 @@ app.MapControllers();
 AddRoles();
 AddAdmin();
 
+app.UseCors("CorsMiddleware");
+
 app.Run();
 
 //method implementations
@@ -44,8 +47,6 @@ void AddServices()
     builder.Services.AddScoped<IAuthService, AuthService>();
     builder.Services.AddScoped<ITokenService, TokenService>();
 };
-
-
 
 void AddDbContext()
 {
@@ -114,19 +115,31 @@ async Task CreateUserRole(RoleManager<IdentityRole> roleManager)
     await roleManager.CreateAsync(new IdentityRole("User")); //The role string should better be stored as a constant or a value in appsettings
 }
 
+void AddCors()
+{
+    // CORS Policy Settings
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("CorsMiddleware", builder =>
+        {
+            builder
+                .WithOrigins("https://localhost:44463")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    });
+}
+
 void AddAdmin()
 {
-    /*
     var tAdmin = CreateAdminIfNotExists();
-    tAdmin.Wait();
-    */
+    tAdmin.Wait();    
     var tHanSolo = CreateHanSoloIfNotExists();
     tHanSolo.Wait();
     var tMcKay = CreateMcKayIfNotExists();
     tMcKay.Wait();
     var tBandee = CreateBandeeIfNotExists();
     tBandee.Wait();
-
 }
 
 async Task CreateAdminIfNotExists()
