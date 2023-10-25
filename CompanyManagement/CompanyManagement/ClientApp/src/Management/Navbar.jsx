@@ -2,7 +2,7 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import "./Style/Navbar.css";
 
-export default function Navbar({logout, username}){
+export default function Navbar({logout, username, jwtToken}){
     const navigate = useNavigate();    
     const handleClickBtn = (route) => {
         navigate(route);
@@ -45,8 +45,8 @@ export default function Navbar({logout, username}){
                         </div>
                     </div>
                     <div className="navbar-username-container">
-                        <span className="navbar-username">{username}</span>
-                        <span>SysAdmin</span>
+                        <span className="navbar-username">{jwtToken.username}</span>
+                        <span className="navbar-role">{jwtToken.role}</span>
                     </div>
                     <div className="navbar-avatar-box" style={{backgroundImage: "url(/images/default_avatar.png)"}}></div>
                     <button className="logout-btn" onClick={handleLogout}>Logout</button>
