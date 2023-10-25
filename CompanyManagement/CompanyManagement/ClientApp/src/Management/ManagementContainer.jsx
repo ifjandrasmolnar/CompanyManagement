@@ -5,10 +5,10 @@ import {Route, Routes} from "react-router-dom";
 import LandingPage from "./LandingPage";
 import Contacts from "./Contacts";
 
-export default function ManagementContainer({logout, username}){    
+export default function ManagementContainer({logout, username, jwtToken}){    
     return(
         <div className="app-container">
-            <Navbar logout={logout} username={username}/>
+            <Navbar logout={logout} username={username} jwtToken={jwtToken}/>
             <div className="workspace-container">
                 <Routes>
                     <Route path='/' element= {
