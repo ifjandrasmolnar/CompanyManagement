@@ -43,11 +43,13 @@ public class TokenService : ITokenService
             new(ClaimTypes.NameIdentifier, user.Id),
             new(ClaimTypes.Name, user.UserName ?? ""),
             new(ClaimTypes.Email, user.Email ?? ""),
+            new ("username", user.UserName ?? ""),
+            new ("email", user.Email ?? "")
         };
 
         if (role != null)
         {
-            claims.Add(new Claim(ClaimTypes.Role, role));
+            claims.Add(new Claim("role", role));
         }
 
         return claims;
