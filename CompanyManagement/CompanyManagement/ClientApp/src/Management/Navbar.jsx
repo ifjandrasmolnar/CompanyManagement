@@ -4,7 +4,7 @@ import "./Style/Navbar.css";
 
 export default function Navbar({logout, username, jwtToken}){
     const navigate = useNavigate();    
-    const handleClickBtn = (route) => {
+    const handleNavigate = (route) => {
         navigate(route);
     };
     
@@ -20,10 +20,16 @@ export default function Navbar({logout, username, jwtToken}){
                     <span>Management System</span>
                 </div>
                 <div className="sidebar-menu-container">
-                    <div className="sidebar-menu-item">
+                    <div
+                        className="sidebar-menu-item"
+                        onClick={() => handleNavigate("/")}
+                    >
                         <span>Company Overview</span>
                     </div>
-                    <div className="sidebar-menu-item">
+                    <div
+                        className="sidebar-menu-item"
+                        onClick={() => handleNavigate("/employees")}
+                    >
                         <span>Employees</span>
                     </div>
                     <div className="sidebar-menu-item">
