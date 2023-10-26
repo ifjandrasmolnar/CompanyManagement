@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace CompanyManagement.Controllers;
 
@@ -42,5 +43,19 @@ public class EmployeesController : ControllerBase
         };
         
         return Ok(obj);
+    }
+    
+    [HttpPost("DeleteUser"), Authorize(Roles="Admin")]
+    public IActionResult DeleteUser([FromBody] DeleteModel model)
+    {
+        Console.WriteLine(model.Id);
+        
+        if (model != null)
+        {
+            _usersRepository.DeleteUser(model.Id);
+            
+            return Ok("Delete success!");
+        }
+        return NotFound("User not found!");
     }
 }
