@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
 namespace CompanyManagement.Controllers;
+using Newtonsoft.Json.Linq;
 
 [ApiController]
 [Route("api")]
@@ -17,9 +18,11 @@ public class EmployeesController : ControllerBase
 {
     private readonly UsersContext _usersContext;
     private readonly IUsersRepository _usersRepository;
+    private readonly IAuthService _authenticationService;
     
-    public EmployeesController()
+    public EmployeesController(IAuthService authenticationService)
     {
+        _authenticationService = authenticationService;
         var options = new DbContextOptionsBuilder<UsersContext>()
             .UseSqlServer("Server=localhost,1433;Database=CompanyManagement;User Id=sa;Password=yourStrong(!)Password;")
             .Options;
@@ -57,5 +60,33 @@ public class EmployeesController : ControllerBase
             return Ok("Delete success!");
         }
         return NotFound("User not found!");
+    }
+    
+    [HttpPost("CreateUser"), Authorize(Roles="Admin")]
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserModel model)
+    {
+        if (model != null)
+        {
+            string? username = model.Username;
+            string? email = model.Email;
+            string? password = model.Password;
+            string? role = model.Role;
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _authenticationService.RegisterAsync(email, username, password, role);
+
+            if (!result.Success)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            return Ok("OK");
+        }
+
+        return BadRequest("Something went wrong !");
     }
 }
