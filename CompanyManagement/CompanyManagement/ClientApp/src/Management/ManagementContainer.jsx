@@ -2,10 +2,11 @@ import React from "react";
 import "./Style/ManagementContainer.css";
 import Navbar from "./Navbar";
 import {Route, Routes} from "react-router-dom";
-import LandingPage from "./LandingPage";
+import LandingPage from "./MC_components/LandingPage";
+import Employees from "./MC_components/Employees";
 import Contacts from "./Contacts";
 
-export default function ManagementContainer({logout, username, jwtToken}){    
+export default function ManagementContainer({logout, username, jwtToken, jwtOriginal}){    
     return(
         <div className="app-container">
             <Navbar logout={logout} username={username} jwtToken={jwtToken}/>
@@ -14,8 +15,10 @@ export default function ManagementContainer({logout, username, jwtToken}){
                     <Route path='/' element= {
                         <LandingPage/>
                     }/>
-                    <Route path='/contact' element= {
-                        <Contacts/>
+                    <Route path='/employees' element= {
+                        <Employees
+                            jwtToken={jwtOriginal}
+                        />
                     }/>
                 </Routes>
             </div>
