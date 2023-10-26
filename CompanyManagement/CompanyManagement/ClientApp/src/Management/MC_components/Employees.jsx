@@ -34,6 +34,25 @@ export default function Employees({jwtToken}) {
         
         fetchEmployees();
     }, [])
+
+    const handleOnClickDelete = (id) => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`https://localhost:7030/api/DeleteUser`,{
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', Authorization: `Bearer ${jwtToken}`},
+                    body: JSON.stringify({Id : id})
+                });
+                if(res.status === 404){
+                    console.log("User not found!");
+                }             
+                
+            }catch (err){
+                console.log(err);
+            }
+        };
+        fetchData();
+    }
     
     return(
         <div className="employees-container">
@@ -65,6 +84,7 @@ export default function Employees({jwtToken}) {
                                     ></i>&nbsp;&nbsp;
                                     <i 
                                         className="fa-solid fa-trash employee-action-icon"
+                                        onClick={() => handleOnClickDelete(e.id)}
                                     ></i>
                                 </td>
                             </tr>
