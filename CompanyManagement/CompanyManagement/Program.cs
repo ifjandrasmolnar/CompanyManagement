@@ -180,11 +180,11 @@ async Task CreateMcKayIfNotExists()
 {
     using var scope = app.Services.CreateScope();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    var adminInDb = await userManager.FindByEmailAsync("mckay@mckay.mckay");
+    var adminInDb = await userManager.FindByEmailAsync("mckay@mckay.com");
     if (adminInDb == null)
     {
-        var admin = new IdentityUser { UserName = "mckay", Email = "mckay@mckay.mckay" };
-        var adminCreated = await userManager.CreateAsync(admin, "yourStrong(!)Password");
+        var admin = new IdentityUser { UserName = "McKay", Email = "mckay@mckay.com" };
+        var adminCreated = await userManager.CreateAsync(admin, "123456");
 
         if (adminCreated.Succeeded)
         {
