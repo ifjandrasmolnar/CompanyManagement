@@ -33,4 +33,18 @@ public class UsersRepository : IUsersRepository
 
         return userRoles;
     }
+    public int DeleteUser(string id)
+    {
+        var user = _context.Users.Find(id);
+        
+        if (user == null)
+        {
+            return 404; 
+        }
+        
+        _context.Users.Remove(user);
+        _context.SaveChanges();
+
+        return 200;
+    }
 }
