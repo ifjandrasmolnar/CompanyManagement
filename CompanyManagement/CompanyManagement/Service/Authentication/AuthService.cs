@@ -13,9 +13,9 @@ public class AuthService : IAuthService
         _tokenService = tokenService;
     }
 
-    public async Task<AuthResult> RegisterAsync(string username, string password, string role)
+    public async Task<AuthResult> RegisterAsync(string email, string username, string password, string role)
     {
-        var user = new IdentityUser { UserName = username};
+        var user = new IdentityUser { UserName = username, Email = email};
         var result = await _userManager.CreateAsync(user, password);
 
         if (!result.Succeeded)
@@ -23,7 +23,7 @@ public class AuthService : IAuthService
             return FailedRegistration(result, username);
         }
 
-        await _userManager.AddToRoleAsync(user, role); // Adding the user to a role
+        await _userManager.AddToRoleAsync(user, role);
         return new AuthResult(true,username, "");
     }
 
